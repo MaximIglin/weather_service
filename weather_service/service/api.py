@@ -40,7 +40,6 @@ class UserRequestApi(APIView):
             new_city.save()
             users_request = add_user_request_instance(city, weather_info)
             serializer = UsersRequestsSerializer(users_request)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)   
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         except KeyError:
-            return Response({"ERROR":"Город не найден"}, status=status.HTTP_400_BAD_REQUEST)             
-    
+            return Response({"ERROR": "Город не найден"}, status=status.HTTP_400_BAD_REQUEST)

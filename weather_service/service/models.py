@@ -17,8 +17,8 @@ class City(models.Model):
 class UserRequest(models.Model):
     """This model is describe all user's requests in our service"""
     city = models.ForeignKey(City, verbose_name="Город",
-                             on_delete=models.CASCADE, blank=True, null=True)
-    weather = models.CharField("Погода", max_length=150, db_column="weather")
+                             on_delete=models.CASCADE, related_name="users_requests")
+    weather = models.CharField("Погода", max_length=150)
     time = models.DateTimeField(verbose_name="Время запроса")
 
     def __str__(self):

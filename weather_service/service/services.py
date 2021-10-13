@@ -19,6 +19,14 @@ def get_all_users_requests() -> QuerySet:
     return users_requests
 
 
+def get_weather(city: str) -> dict:
+    """This function is return weather from API"""
+    api_key = "bd28fbbbdaa30d7ce0da8150e9ad3653"
+    uri = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+    response_api = requests.get(uri).json()
+    return response_api
+
+
 def create_weather_info(response_api: dict) -> dict:
     """This function is collect dictionary with weather information"""
     weather_info = {
@@ -29,14 +37,6 @@ def create_weather_info(response_api: dict) -> dict:
         "humidity": response_api["main"]["humidity"]
     }
     return weather_info
-
-
-def get_weather(city: str) -> dict:
-    """This function is return weather from API"""
-    api_key = "bd28fbbbdaa30d7ce0da8150e9ad3653"
-    uri = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
-    response_api = requests.get(uri).json()
-    return response_api
 
 
 def add_user_request_instance(city: str, weather_info: dict):

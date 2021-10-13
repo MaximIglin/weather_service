@@ -1,0 +1,46 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сервис погоды</title>
+    <link rel="stylesheet" href="{% static '/css/home.css'%}">
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="fone">
+            <div class="select_city">
+                <h1>Выберете город</h1>
+                <div class="form">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" value="Показать погоду" class="btn">
+                    </form>
+                </div>
+            </div>
+            <div class="info">
+                {%if not info and not error%}
+                <h2>Выберете город для отображения погоды</h2>
+                {%endif%}
+                {%if error%}
+                <h1>{{error}}</h1>
+                {%endif%}
+                {%if info%}
+                <h2>В городе: {{info.city}}</h1>
+                    <h2>Температура: {{info.tempreture}} ℃</h3>
+                        <h2>Ветер: {{info.wind}} м/с</h3>
+                            <img src="{{info.icon}}" alt="">
+                            {%endif%}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

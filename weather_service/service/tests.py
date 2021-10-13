@@ -47,7 +47,7 @@ class TestServices(TestCase):
     def test_get_weather(self):
         city = "Moscow"
         response = get_weather(city)
-        self.assertEqual(city, response["name"]) 
+        self.assertEqual(city, response["name"])
 
     def test_create_weather_info(self):
         city = "Moscow"
